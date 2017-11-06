@@ -1,5 +1,5 @@
 body {
-	margin: 0;
+	margin: 24px;
 	padding: 0;
 	height: 100%;
 	width: 100%;
@@ -10,6 +10,7 @@ body {
 
 section {
 	padding: 0px;
+	position: relative;
 }
 
 ul {
@@ -36,9 +37,16 @@ ul {
 }*/
 
 .group-odd{
-	color: blue;
+	color: red ;
 }
 
 .group{
 	color: green;
+}
+
+#image{
+	position: absolute;
+	right: 20px;
+	top: 15px;
+	border-radius:50%;
 }
