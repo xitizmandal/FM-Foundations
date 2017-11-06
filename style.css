@@ -1,0 +1,44 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background: #f1f1f1;
+	/*color: #4a4a4a;*/
+	font-family: cursive;
+}
+
+section {
+	padding: 0px;
+}
+
+ul {
+	list-style-type: square;
+}
+
+
+.title{
+	color: #c45a12;
+}
+
+.sub-title{
+	color: #c45a12;
+	border-bottom: 2px dashed #666666;
+	padding: 0 0 5px 0;
+}
+
+/*.group-odd.group{
+	color: white;
+}
+
+.group.group-odd{
+	color: red;
+}*/
+
+.group-odd{
+	color: blue;
+}
+
+.group{
+	color: green;
+}
