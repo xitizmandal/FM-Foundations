@@ -1,12 +1,6 @@
-body {
-	margin: 0;
-	padding: 0 0 0 8px;
-	height: 100%;
-	width: 100%;
-	background: #f1f1f1;
-	/*color: #4a4a4a;*/
-	font-family: cursive;
-}
+body {     margin: 0;     padding: 0 0 0 8px;     height: 100%;     width:
+100%;     background: #f1f1f1;     /*color: #4a4a4a;*/     font-family:
+cursive; }
 
 section {
 	padding: 0px;
