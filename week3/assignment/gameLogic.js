@@ -10,60 +10,94 @@ function shuffle(a) {
 	return a;
 }
 
-
-// function readyBoard(){
-	// var numbers = [1,2,3,4,5,6,7,8];
-	// numbers.push.apply(numbers, numbers);
-	// numbers = shuffle(numbers);
-
-
-// }
-
-$(document).ready(function () {
-	var numbers = [1,2,3,4,5,6,7,8];
+/*function setupGameBoard(number) {
+	number = Array.from(new Array(number),(val,index)=>index+1);
 	numbers.push.apply(numbers, numbers);
 	numbers = shuffle(numbers);
+
+
+
+	var div = `<div class="box" position="16"><span><span></div>`;
+	// var div = `<div class="box" position="${i}">${element}</div>`;
+	// $('.board').append(div);
+
+
+
+
+}*/
+
+$(document).ready(function () {
+	var numbers = Array.from(new Array(8),(val,index)=>index+1);
+	numbers.push.apply(numbers, numbers);
+	numbers = shuffle(numbers);
+	var noOfMoves = 0;
+	var totalPaired = 0;
 	var prevIndex = null;
 	var currentIndex = null;
 
-	for (var i = numbers.length - 1; i >= 0; i--) {
-		console.log(numbers[i]);
-	}
+	// for (var i = numbers.length - 1; i >= 0; i--) {
+	// 	$(`.box[position=${i}]`).text(numbers[i]);
 
+	// }
 
-			$('.box').click(function () {
-				if ($(this).hasClass('paired')) {
-					alert("paired");
-				} else {
-					currentIndex = ($(this).attr("position"));
+	numbers.forEach(function (element, i) {
+		$(`.box[position=${i}]`).children('span').text(element);
 
-					// $(this).children('p').text(numbers[index]);
-					console.log(currentIndex)
-					$(this).text(numbers[currentIndex]).addClass('selected');
-					// $(this).addClass('selected');
+	})
 
-					if (prevIndex === null){
-						prevIndex = currentIndex;
-						return;
-					} else if (numbers[prevIndex] === numbers[currentIndex]){
-						$(this).addClass('paired')
-						return;
-									// $('box[position="${prevIndex}').addClass('paired')
-					}
+	setTimeout(function () {
+		$('.box').children('span').hide()
+	}, 2000);
 
+	$('.box').click(function () {
+		if ($(this).hasClass('paired')) {
+			alert("paired");
+			console.log("Prev index: " + prevIndex)
+			console.log("Current index: " + currentIndex)
+			return;
+		} else if ($(this).hasClass('selected')){
+			alert("selected")
+			console.log("Prev index: " + prevIndex)
+			console.log("Current index: " + currentIndex)
+			return;
+		} else {
+			noOfMoves += 1;
+			currentIndex = ($(this).attr("position"));
+			console.log("Current:  " + currentIndex)
+			$(this).addClass('selected');
+			$(this).children('span').show();
 
-					$(this).removeClass('selected')
-
+			if (prevIndex === null){
+				prevIndex = currentIndex;
+				return;
+			} else if (numbers[prevIndex] === numbers[currentIndex]){
+				$(`.box[position= ${prevIndex}]`).addClass('paired');
+				$(this).addClass('paired');
+				totalPaired += 1;
+				console.log("total paired:   " + totalPaired);
+				if (totalPaired === ( numbers.length / 2)){
+					alert("Game Completed\nTotal Moves : " + noOfMoves);
 				}
 
-				// $(this).removeClass('selected').text('');
-				console.log("Prev index: " + prevIndex)
-				console.log("Current index: " + currentIndex)
 				prevIndex = null;
 				currentIndex = null;
-			});
-			// console.log($(this).getAttribute('position'));
-			// console.log('first:  '+firstNumber);
-			// console.log('second:  ' +secondNumber);
+				return;
+			}
+			console.log("Prev index: " + prevIndex)
+			console.log("Current index: " + currentIndex)
 
-		});
+
+			setTimeout(function ($this,prevIndex) {
+				$this.removeClass('selected').children('span').hide();
+
+				$(`.box[position=${prevIndex}]`).removeClass('selected').children('span').hide();
+			}, 500, $(this),prevIndex);
+
+			prevIndex = null;
+			currentIndex = null;
+
+		}
+
+	});
+
+});
