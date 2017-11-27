@@ -92,6 +92,7 @@ $(document).ready(function () {
 				console.log("total paired:   " + totalPaired);
 				if (totalPaired === ( numbers.length / 2)){
 					// alert("Game Completed\nTotal Moves : " + noOfMoves);
+					$('#completeText').text(`You Completed the game in ${noOfMoves} steps.\nStart new game?`)
 					$('#completeModal').modal('show');
 				}
 
