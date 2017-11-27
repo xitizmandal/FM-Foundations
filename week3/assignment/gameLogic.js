@@ -26,6 +26,7 @@ function shuffle(a) {
 
 }*/
 
+
 $(document).ready(function () {
 	var numbers = Array.from(new Array(8),(val,index)=>index+1);
 	numbers.push.apply(numbers, numbers);
@@ -48,6 +49,20 @@ $(document).ready(function () {
 	setTimeout(function () {
 		$('.box').children('span').hide()
 	}, 2000);
+
+	$('#newBtn').click(function(){
+		// $('.alert').alert()
+		// location.reload();
+		$('#newModal').modal('show')
+	});
+
+	$('.confirmNew').click(function(){
+		location.reload();
+	})
+
+	// alert("ggwp")
+	// $('.box').children('span').hide()
+
 
 	$('.box').click(function () {
 		if ($(this).hasClass('paired')) {
@@ -76,7 +91,8 @@ $(document).ready(function () {
 				totalPaired += 1;
 				console.log("total paired:   " + totalPaired);
 				if (totalPaired === ( numbers.length / 2)){
-					alert("Game Completed\nTotal Moves : " + noOfMoves);
+					// alert("Game Completed\nTotal Moves : " + noOfMoves);
+					$('#completeModal').modal('show');
 				}
 
 				prevIndex = null;
