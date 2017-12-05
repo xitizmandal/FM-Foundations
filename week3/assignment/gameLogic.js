@@ -1,7 +1,7 @@
 function shuffle(a) {
 	var j, x, i;
-	for (i = a.length - 1; i > 0; i--){
-		j = Math.floor(Math.random() * (i+1));
+	for (i = a.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
 		x = a[i];
 		a[i] = a[j];
 		a[j] = x;
@@ -27,8 +27,8 @@ function shuffle(a) {
 }*/
 
 
-$(document).ready(function () {
-	var numbers = Array.from(new Array(8),(val,index)=>index+1);
+$(document).ready(function() {
+	var numbers = Array.from(new Array(8), (val, index) => index + 1);
 	numbers.push.apply(numbers, numbers);
 	numbers = shuffle(numbers);
 	var noOfMoves = 0;
@@ -41,22 +41,22 @@ $(document).ready(function () {
 
 	// }
 
-	numbers.forEach(function (element, i) {
+	numbers.forEach(function(element, i) {
 		$(`.box[position=${i}]`).children('span').text(element);
 
 	})
 
-	setTimeout(function () {
+	setTimeout(function() {
 		$('.box').children('span').hide()
 	}, 2000);
 
-	$('#newBtn').click(function(){
+	$('#newBtn').click(function() {
 		// $('.alert').alert()
 		// location.reload();
 		$('#newModal').modal('show')
 	});
 
-	$('.confirmNew').click(function(){
+	$('.confirmNew').click(function() {
 		location.reload();
 	})
 
@@ -64,13 +64,13 @@ $(document).ready(function () {
 	// $('.box').children('span').hide()
 
 
-	$('.box').click(function () {
+	$('.box').click(function() {
 		if ($(this).hasClass('paired')) {
 			alert("paired");
 			console.log("Prev index: " + prevIndex)
 			console.log("Current index: " + currentIndex)
 			return;
-		} else if ($(this).hasClass('selected')){
+		} else if ($(this).hasClass('selected')) {
 			alert("selected")
 			console.log("Prev index: " + prevIndex)
 			console.log("Current index: " + currentIndex)
@@ -82,15 +82,15 @@ $(document).ready(function () {
 			$(this).addClass('selected');
 			$(this).children('span').show();
 
-			if (prevIndex === null){
+			if (prevIndex === null) {
 				prevIndex = currentIndex;
 				return;
-			} else if (numbers[prevIndex] === numbers[currentIndex]){
+			} else if (numbers[prevIndex] === numbers[currentIndex]) {
 				$(`.box[position= ${prevIndex}]`).addClass('paired');
 				$(this).addClass('paired');
 				totalPaired += 1;
 				console.log("total paired:   " + totalPaired);
-				if (totalPaired === ( numbers.length / 2)){
+				if (totalPaired === (numbers.length / 2)) {
 					// alert("Game Completed\nTotal Moves : " + noOfMoves);
 					$('#completeText').text(`You Completed the game in ${noOfMoves} steps.\nStart new game?`)
 					$('#completeModal').modal('show');
@@ -104,11 +104,11 @@ $(document).ready(function () {
 			console.log("Current index: " + currentIndex)
 
 
-			setTimeout(function ($this,prevIndex) {
+			setTimeout(function($this, prevIndex) {
 				$this.removeClass('selected').children('span').hide();
 
 				$(`.box[position=${prevIndex}]`).removeClass('selected').children('span').hide();
-			}, 500, $(this),prevIndex);
+			}, 500, $(this), prevIndex);
 
 			prevIndex = null;
 			currentIndex = null;

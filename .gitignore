@@ -3,4 +3,7 @@ EloquentJS
 bootstrap
 *.DS_Store
 
-week4
+week4/expressTest/node_modules
+week4/testNode/node_modules
+week4/test
+week4/node-api-tutorial
